@@ -2,39 +2,24 @@
 
 This project demonstrates a Blue-Green Deployment strategy for an application running on a Kubernetes cluster (EKS) provisioned using Terraform. It includes setting up CI/CD pipelines with Jenkins, code quality analysis using SonarQube, artifact management with Nexus, and deployment on Kubernetes.
 
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Key Tools](#key-tools)
-- [Installation](#installation)
-  - [Java 17 Installation](#java-17-installation)
-  - [Jenkins Installation](#jenkins-installation)
-  - [Trivy Installation](#trivy-installation)
-  - [Docker Installation](#docker-installation)
-  - [SonarQube Installation](#sonarqube-installation)
-  - [Nexus Installation](#nexus-installation)
-  - [AWS CLI Installation](#aws-cli-installation)
-  - [Kubectl Installation](#kubectl-installation)
-  - [EKS Cluster Setup](#eks-cluster-setup)
-- [Pipeline Configuration](#pipeline-configuration)
-- [References](#references)
-
 ## Project Overview
 
 This project outlines the steps to set up a Blue-Green Deployment strategy using Jenkins and Kubernetes on an Amazon EKS cluster, provisioned with Terraform. It integrates several DevOps tools for automation, code quality checks, and artifact management.
+
+![](Images/Flow_Chart.jpg)
 
 ### Steps Involved
 
 1. **Set up EKS Cluster using Terraform**  
    Provision an Amazon EKS cluster using Terraform to handle infrastructure as code (IaC) for scaling and modifying the cluster.
 
-2. **Set up Jenkins, SonarQube, and Nexus**  
+3. **Set up Jenkins, SonarQube, and Nexus**  
    Jenkins is used to manage CI/CD pipelines, SonarQube is integrated for static code analysis, and Nexus is configured to store build artifacts.
 
-3. **Set up Kubernetes RBAC**  
+4. **Set up Kubernetes RBAC**  
    Configure Role-Based Access Control (RBAC) to manage access to Kubernetes resources, ensuring secure communication between Jenkins, developers, and the cluster.
 
-4. **Create a Blue-Green Deployment Pipeline in Jenkins**  
+5. **Create a Blue-Green Deployment Pipeline in Jenkins**  
    The Jenkins pipeline automates building the application, performing code quality checks, deploying to the Green environment, testing, and switching traffic from Blue to Green.
 
 ## Key Tools
@@ -144,7 +129,7 @@ tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 sudo mv /tmp/eksctl /usr/local/bin
 ```
 
-# Kubectl Installation
+## Kubectl Installation
 
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -159,3 +144,17 @@ kubectl version --client
 ```bash
 aws eks --region <region-code> update-kubeconfig --name <cluster-name>
 ```
+
+## Snapshots of the Project
+## AWS EKS Cluster
+![](Images/EKS_Cluster.jpg)
+
+## Jenkins Pipeline Stages
+![](Images/Jenkins%20Stages.jpg)
+
+## Jenkins Blue Green Deployment Build with Parameters
+![](Images/Jenkins_Blue_Green_Deployment.jpg)
+
+## Live Application
+![](Images/live_application.jpg)
+
